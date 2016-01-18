@@ -1,4 +1,5 @@
 # Xvfb Module
+[![Build Status](https://travis-ci.org/Adaptavist/puppet-xvfb.svg?branch=master)](https://travis-ci.org/Adaptavist/puppet-xvfb)
 
 ## Overview
 
