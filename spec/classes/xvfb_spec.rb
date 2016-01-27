@@ -46,4 +46,24 @@ describe 'xvfb', :type => 'class' do
       should raise_error(Puppet::Error, /xvfb - Unsupported Operating System family: Solaris/)
     end
   end
+
+  context "Redhat should use systemd" do
+    let(:facts) {
+      { :osfamily => 'RedHat' }
+    }
+    let(:params) {{
+        :user    => 'spec',
+        :options => ':20 -once'
+    }}
+    it do
+      should contain_package('xorg-x11-server-Xvfb')
+      should contain_file('/etc/systemd/system/xvfb.service')
+                 .with(
+                     'mode' => '0644'
+                 )
+                 .with_content(/User=spec/)
+                 .with_content(/ExecStart.*Xvfb :20 -once/)
+      should contain_service('xvfb')
+    end
+  end
 end
