@@ -1,0 +1,15 @@
+### File managed with puppet ###
+### Served by:        '<%= scope.lookupvar('::servername') %>'
+### Module:           '<%= scope.to_hash['module_name'] %>'
+### Template source:  '<%= template_source %>'
+
+[Unit]
+Description=X Virtual Frame Buffer Service
+After=network.target
+
+[Service]
+User=<%= @user %>
+ExecStart=/usr/bin/Xvfb <%= @options %>
+
+[Install]
+WantedBy=multi-user.target
