@@ -22,7 +22,3 @@ xvfb::options: ":99 -ac"
 ## Dependencies
 
 This module has no dependencies on other puppet modules.
-
-## TODO
-
-Add CentOS support.
