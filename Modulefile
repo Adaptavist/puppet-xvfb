@@ -1,5 +1,5 @@
 name 'adaptavist-xvfb'
-version '0.1.7'
+version '1.0.0'
 source 'https://github.com/Adaptavist/puppet-xvfb.git'
 author 'adaptavist'
 summary 'Xvfb puppet module' 

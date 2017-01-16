@@ -4,10 +4,10 @@ class xvfb(
 ){
 
   case $::osfamily {
-    Debian: {
+    'Debian': {
       $package = 'xvfb'
     }
-    RedHat: {
+    'RedHat': {
       $package = 'xorg-x11-server-Xvfb'
     }
     default: {
@@ -21,12 +21,12 @@ class xvfb(
     }
   }
 
-  $initFile = $::osfamily ? {
+  $init_file = $::osfamily ? {
     'RedHat' => '/etc/systemd/system/xvfb.service',
     default  => '/etc/init.d/xvfb'
   }
 
-  $templateFile = $::osfamily ? {
+  $template_file = $::osfamily ? {
     'RedHat' => "${module_name}/xvfb.service.erb",
     default  => "${module_name}/xvfb.erb"
   }
@@ -36,8 +36,8 @@ class xvfb(
     default  => '0755'
   }
 
-  file { $initFile:
-    content => template($templateFile),
+  file { $init_file:
+    content => template($template_file),
     mode    => $mode,
     require => Package[$package]
   }
@@ -45,7 +45,7 @@ class xvfb(
   service { 'xvfb':
     ensure  => running,
     enable  => true,
-    require => [ Package[$package], File[$initFile] ]
+    require => [ Package[$package], File[$init_file] ]
   }
 }
 
